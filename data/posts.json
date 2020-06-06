@@ -1,0 +1,52 @@
+[
+  {
+    "nome": "Dylan O'Brien",
+    "depoimento": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae cursus orci. Curabitur vitae justo et lorem egestas condimentum in sed eros. Nullam luctus semper aliquet. Pellentesque consectetur accumsan tortor ac interdum. Sed consectetur luctus tortor, at scelerisque tortor blandit non. ",
+    "img": "https://i.pinimg.com/originals/bd/fe/17/bdfe17be2f366b70720c66a1e6ffaf55.jpg",
+    "comentario1": "Nam sit amet est vel mi fringilla varius vel vitae lorem. Curabitur ullamcorper nisi vitae purus pellentesque porta. Quisque vehicula faucibus lorem sed sagittis. Ut",
+    "usuario1": "Adrienne Agnes",
+    "comentario2": "Ut tincidunt euismod metus, vel eleifend arcu elementum non. Mauris varius erat in turpis sollicitudin, at euismod erat malesuada. Quisque laoreet iaculis augue, a vestibulum orci accumsan at.",
+    "usuario2": "Bernadette Becky",
+    "reacoes": 23
+  },
+  {
+    "nome": "Joey King",
+    "depoimento": "Donec eget iaculis massa. Ut posuere, tellus eget ornare efficitur, lectus magna sagittis quam, vitae euismod enim nibh vel orci. Etiam sagittis magna vitae est ornare, ac varius libero maximus.",
+    "img": "https://i.pinimg.com/564x/8e/75/bd/8e75bd1cdf264068d70f153f36a3fd24.jpg",
+    "comentario1": "In vel sollicitudin est, pretium vehicula enim. Praesent sit amet mauris et mauris dictum ullamcorper sit amet a lectus.",
+    "usuario1": "Carry Cassandra",
+    "comentario2": " Nullam at leo felis. Aliquam erat volutpat",
+    "usuario2": "Felicia Fay",
+    "reacoes": 55
+  },
+  {
+    "nome": "Ross Butler",
+    "depoimento": "Suspendisse quis posuere arcu. Sed ornare faucibus tristique. Fusce mauris augue, efficitur at tristique ac, tempus sed massa. Pellentesque congue porta ante at sagittis.",
+    "img": "https://66.media.tumblr.com/7e165f35b079319877d1cc6cab1b6dae/tumblr_op4llgwlJe1uil2vwo5_250.jpg",
+    "comentario1": "Ut sit amet maximus erat, ut maximus mauris. Fusce ut sapien ac velit tincidunt hendrerit non et purus. Proin pharetra enim ut nisl semper pellentesque. Aliquam quis efficitur lorem.",
+    "usuario1": "Betty Beulah",
+    "comentario2": "Mauris non purus vel massa elementum consectetur eu sed nibh. Sed aliquet lobortis facilisis. Aenean consequat laoreet lacus at vestibulum.",
+    "usuario2": "Candice Candy",
+    "reacoes": 20
+  },
+  {
+    "nome": "Willow Smith",
+    "depoimento": "Mauris ex turpis, viverra et sapien sit amet, consequat faucibus lacus. Duis efficitur nisl quis hendrerit efficitur. Sed ac mauris et libero vestibulum pellentesque vel in nibh. Sed nisi lacus, vehicula vitae odio vel, aliquam euismod ligula. Etiam blandit leo sit amet orci sollicitudin ullamcorper.",
+    "img": "https://pbs.twimg.com/media/EPs2VNIWsAIe_Qf.jpg:large",
+    "comentario1": "Pellentesque tempor feugiat condimentum. Proin non semper diam. Nunc eget sapien a diam luctus scelerisque. In sit amet fermentum dolor.",
+    "usuario1": "Gayle Gail",
+    "comentario2": "Phasellus vitae mattis dui. Curabitur porta tortor a sapien elementum finibus. Sed suscipit congue posuere. Nunc risus libero, vulputate vitae turpis a, pulvinar pharetra leo.",
+    "usuario2": "Hazel Heather",
+    "reacoes": 69
+  },
+  {
+    "nome": "Noah Centineo",
+    "depoimento": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ullamcorper congue maximus. Donec bibendum, tellus ut ornare maximus, arcu velit sodales tellus, eu accumsan lectus velit at magna. Praesent semper sollicitudin arcu, sit amet laoreet lectus ornare eu.",
+    "img": "https://66.media.tumblr.com/cf0d0d6aa29cc929686edca4184c4e26/7f8a5b94175773d8-22/s500x750/b71964c569fe0e3f2af2e4fd5583bea1db360737.png",
+    "comentario1": "Vestibulum interdum sagittis est, sit amet molestie ante fermentum sed. Nunc finibus augue ultricies neque consectetur ullamcorper. Aliquam tristique eros ut ante elementum rutrum elementum id augue. Mauris commodo orci quis ullamcorper porttitor. ",
+    "usuario1": "Holly Hope",
+    "comentario2": "Morbi iaculis, arcu vitae elementum tincidunt, diam magna pretium risus, eget porttitor justo purus sed massa. Mauris quis eros non mi porttitor feugiat.",
+    "usuario2": "Jackie Jan",
+    "reacoes": 72
+  }
+]
