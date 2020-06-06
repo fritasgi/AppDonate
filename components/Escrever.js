@@ -95,6 +95,7 @@ const estilo = StyleSheet.create({
         shadowOpacity: 0.37,
         shadowRadius: 3.49,
         elevation: 3,
+        marginVertical: 10
         
     },
     textAreaContainer: {
