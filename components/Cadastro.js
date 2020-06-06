@@ -11,7 +11,7 @@ export default class Cadastro extends React.Component {
     //renderização do componente
     render() {
         return (
-            <ScrollView style={estilo.scroll}>
+            <ScrollView style={{backgroundColor: 'white'}}>
 
                 <View style={estilo.viewTitulo}>
                     <TouchableHighlight

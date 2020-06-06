@@ -39,7 +39,7 @@ export default class Perfil extends React.Component {
     //renderização do componente
     render() {
         return (
-            <View >
+            <View style={{backgroundColor: 'white'}}>
 
                 <View style={estilo.viewTitulo}>
                     <TouchableHighlight

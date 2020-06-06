@@ -32,7 +32,7 @@ export default class Feed extends React.Component {
   //renderização do componente
   render() {
     return (
-      <ScrollView >
+      <ScrollView style={{backgroundColor: 'white'}} >
 
         <View style={estilo.viewTitulo}>
           <TouchableHighlight

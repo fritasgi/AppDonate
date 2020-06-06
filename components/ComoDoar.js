@@ -11,7 +11,7 @@ export default class ComoDoar extends React.Component {
   //renderização do componente
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={{backgroundColor: 'white'}}>
          <View style={estilo.viewTitulo}>
                     <TouchableHighlight
                     underlayColor='white'

@@ -38,7 +38,7 @@ export default function App() {
         component={ChatBot}
         options={{ drawerLabel: 'Chat' }}
       />
-  <Drawer.Screen
+      <Drawer.Screen
         name="Perfil"
         component={Perfil}
         options={{ drawerLabel: 'Perfil' }}
