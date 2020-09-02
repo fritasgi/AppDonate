@@ -5,7 +5,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
 import ComoDoar from './components/ComoDoar.js'
-import ChatBot from './components/ChatBot'
 import Login from './components/Login.js'
 import Cadastro from './components/Cadastro'
 import Feed from './components/Depoimentos'
@@ -32,11 +31,6 @@ export default function App() {
         name="ComoDoar"
         component={ComoDoar}
         options={{ drawerLabel: 'Quero ser um doador' }}
-      />
-      <Drawer.Screen
-        name="ChatBot"
-        component={ChatBot}
-        options={{ drawerLabel: 'Chat' }}
       />
       <Drawer.Screen
         name="Perfil"
