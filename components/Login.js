@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Feed from './Depoimentos';
 import { Text, TextInput, ScrollView, StyleSheet, View, Image, Alert, TouchableHighlight } from 'react-native';
 
 
@@ -36,7 +37,7 @@ export default class Login extends React.Component {
                         style={estilo.botao}
                     >
                         <Text style={estilo.enviar}
-                            onPress={() => this.props.navigation.goBack()}>ENTRAR</Text>
+                            onPress={() => this.props.navigation.navigate('Feed')}>ENTRAR</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         underlayColor='#E6E6E6'

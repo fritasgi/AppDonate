@@ -20,7 +20,7 @@ export default function App() {
     <NavigationContainer>
     <Drawer.Navigator
       drawerType={dimensions.width >= 768 ? 'permanent' : 'front'}
-      initialRouteName="Feed"
+      initialRouteName="Login"
     >
        <Drawer.Screen
         name="Feed"
