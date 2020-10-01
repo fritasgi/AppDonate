@@ -64,7 +64,8 @@ export default class Cadastro extends React.Component {
                     <TouchableHighlight
                         underlayColor='#E6E6E6'
                         onPress={()=>{
-                            cadastrarUsuarios(this.state.nome, this.state.email, this.state.senha)
+                            cadastrarUsuarios(this.state.nome, this.state.email, this.state.senha),
+                            this.props.navigation.navigate('Login')
                           }}
                         style={estilo.botao}>
                         <Text style={estilo.enviar}>CADASTRAR</Text>
