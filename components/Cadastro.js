@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import { Text, TextInput, ScrollView, StyleSheet, View, TouchableHighlight, Image } from 'react-native';
 
-export default class Cadastro extends React.Component {
+var axiosInstance = axios.create({
+    baseURL:'https://api-am-donate.azurewebsites.net',
+    });
+    
+async function cadastrarUsuarios(pNome, pEmail, pSenha){
+        const user = await axiosInstance.post('/user', {nome: pNome, email: pEmail , senha: pSenha})
+};
 
-    //construtor para uso do props
-    constructor(props) {
-        super(props);
-    }
+export default class Cadastro extends React.Component {
+    
+    state = {
+        nome: '',
+        email: '',
+        senha: '',
+      }
+
 
     //renderização do componente
     render() {
@@ -24,11 +35,27 @@ export default class Cadastro extends React.Component {
 
                 <View style={estilo.display}>
                     <Text style={estilo.dados}>NOME:</Text>
-                    <TextInput style={estilo.input} autoCompleteType="name" placeholder="Digite seu nome" />
+                    <TextInput style={estilo.input} 
+                                autoCompleteType="name" 
+                                placeholder="Digite seu nome" 
+                               
+                                onChangeText={(value) => this.setState({ nome: value })}/>
+
+
                     <Text style={estilo.dados}>E-MAIL:</Text>
-                    <TextInput style={estilo.input} autoCompleteType="email" placeholder="Digite seu E-mail" />
+                    <TextInput style={estilo.input} 
+                                autoCompleteType="email" 
+                                placeholder="Digite seu E-mail" 
+                            
+                                onChangeText={(value) => this.setState({ email: value })}/>
                     <Text style={estilo.dados}>SENHA:</Text>
-                    <TextInput style={estilo.input} secureTextEntry={true} placeholder="Digite sua senha" />
+
+                    <TextInput style={estilo.input} 
+                                secureTextEntry={true} 
+                                placeholder="Digite sua senha"
+                            
+                                onChangeText={(value) => this.setState({ senha: value })}
+                     />
                     <Text style={estilo.dados}>CONFIRME SUA SENHA:</Text>
                     <TextInput style={estilo.input} secureTextEntry={true} placeholder="Digite sua senha novamente" />
                 </View>
@@ -36,9 +63,11 @@ export default class Cadastro extends React.Component {
                 <View >
                     <TouchableHighlight
                         underlayColor='#E6E6E6'
+                        onPress={()=>{
+                            cadastrarUsuarios(this.state.nome, this.state.email, this.state.senha)
+                          }}
                         style={estilo.botao}>
-                        <Text style={estilo.enviar}
-                            onPress={() => this.props.navigation.navigate('Login')}>CADASTRAR</Text>
+                        <Text style={estilo.enviar}>CADASTRAR</Text>
                     </TouchableHighlight>
 
                     <TouchableHighlight
