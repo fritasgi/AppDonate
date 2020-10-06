@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, TouchableHighlight, Image, StyleSheet, View, FlatList } from 'react-native';
 import DadosPerfil from './DadosPerfil'
 import Informacoes from './Informacoes'
+import { connect } from 'react-redux';
+
 
 
 
@@ -27,17 +29,17 @@ function Item({ nome, email, imagem, depoimento, comentario, usuario, reacoes })
     );
 }
 
-export default class Perfil extends React.Component {
-
+class Perfil extends React.Component {
     //construtor para uso do props
     constructor(props) {
         super(props)
     }
-
-
-
+    
+    
+    
     //renderização do componente
     render() {
+        const prop = this.prop
         return (
             <View style={{backgroundColor: 'white'}}>
 
@@ -47,7 +49,7 @@ export default class Perfil extends React.Component {
                         onPress={() => this.props.navigation.openDrawer()}>
                         <Image style={estilo.menu} source={require('../assets/images/menu.png')} />
                     </TouchableHighlight>
-                    <Text style={estilo.titulo}>MEU PERFIL</Text>
+                    <Text style={estilo.titulo}></Text>
                 </View>
                 <FlatList
                     data={DATA}
@@ -66,6 +68,12 @@ export default class Perfil extends React.Component {
         )
     }
 }
+
+const mapStateToProps = store => ({
+    auth: store.auth
+})
+
+export default connect(mapStateToProps)(Perfil);
 
 const estilo = StyleSheet.create({
     item: {

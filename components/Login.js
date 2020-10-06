@@ -1,15 +1,41 @@
 import React, { Component } from 'react';
 import Feed from './Depoimentos';
+import axios from '../lib/axios'
 import { Text, TextInput, ScrollView, StyleSheet, View, Image, Alert, TouchableHighlight } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { auth } from '../redux/actions';
 
-
-export default class Login extends React.Component {
+class Login extends React.Component {
 
     //construtor para uso do props
     constructor(props) {
         super(props);
     }
-
+    state = {
+        email: '',
+        senha: '',
+    }
+    login = () => {
+        const {
+            email,
+            senha,
+        } = this.state
+        axios.post('/login', {
+            email,
+            senha,
+        })
+            .then(async res => {
+                if(res.status === 200) {
+                    await auth(res.data)
+                    this.props.navigation.navigate('Feed')
+                }
+            })
+            .catch(error => {
+                console.log('erro')
+                // APRENSENTAR UM POP UP DE ERRO PARA O USUARIO
+            })
+    }
     //renderização do componente
     render() {
         return (
@@ -27,9 +53,19 @@ export default class Login extends React.Component {
 
                 <View style={estilo.display}>
                     <Text style={estilo.dados}>E-MAIL:</Text>
-                    <TextInput style={estilo.input} autoCompleteType="email" placeholder="Digite seu E-mail" />
+                    <TextInput 
+                        style={estilo.input}
+                        autoCompleteType="email"
+                        placeholder="Digite seu E-mail"
+                        onChangeText={(value) => this.setState({ email: value })}
+                    />
                     <Text style={estilo.dados}>SENHA:</Text>
-                    <TextInput style={estilo.input} secureTextEntry={true} placeholder="Digite sua senha" />
+                    <TextInput
+                        style={estilo.input}
+                        secureTextEntry={true}
+                        placeholder="Digite sua senha"
+                        onChangeText={(value) => this.setState({ senha: value })}
+                    />
                 </View>
                 <View >
                     <TouchableHighlight
@@ -37,7 +73,7 @@ export default class Login extends React.Component {
                         style={estilo.botao}
                     >
                         <Text style={estilo.enviar}
-                            onPress={() => this.props.navigation.navigate('Feed')}>ENTRAR</Text>
+                            onPress={() => this.login()}>ENTRAR</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         underlayColor='#E6E6E6'
@@ -58,6 +94,15 @@ export default class Login extends React.Component {
         )
     }
 }
+
+//CONSOME O DADO
+// const mapStateToProps = store => ({
+//     user: store.auth.user
+// })
+
+const mapDispatchToProps = dispatch => bindActionCreators({ auth }, dispatch)
+
+export default connect(mapDispatchToProps)(Login);
 
 //#3693BA
 const estilo = StyleSheet.create({

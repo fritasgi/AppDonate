@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from '../lib/axios'
 import { Text, TextInput, ScrollView, StyleSheet, View, TouchableHighlight, Image } from 'react-native';
 
-var axiosInstance = axios.create({
-    baseURL:'https://api-am-donate.azurewebsites.net',
-    });
-    
 async function cadastrarUsuarios(pNome, pEmail, pSenha){
-        const user = await axiosInstance.post('/user', {nome: pNome, email: pEmail , senha: pSenha})
+        const user = await axio.post('/user', {nome: pNome, email: pEmail , senha: pSenha})
 };
 
 export default class Cadastro extends React.Component {

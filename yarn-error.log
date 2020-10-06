@@ -1,20 +1,20 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js remove apisauce
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add --dev redux react-redux
 
 PATH: 
-  C:\ProgramData\Anaconda3;C:\ProgramData\Anaconda3\Library\mingw-w64\bin;C:\ProgramData\Anaconda3\Library\usr\bin;C:\ProgramData\Anaconda3\Library\bin;C:\ProgramData\Anaconda3\Scripts;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Users\Gi\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\Gi\AppData\Local\Programs\Python\Python38-32\;C:\Users\Gi\AppData\Local\Programs\Python\Launcher\;C:\Users\Gi\AppData\Local\Microsoft\WindowsApps;C:\Users\Gi\AppData\Roaming\npm;C:\Users\Gi\AppData\Local\GitHubDesktop\bin;C:\Users\Gi\AppData\Local\Yarn\bin;C:\Users\Gi\AppData\Local\Microsoft\WindowsApps;C:\Users\Gi\.dotnet\tools
+  C:\Users\arthu\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\arthu\bin;C:\Program Files\AdoptOpenJDK\jdk-11.0.8.10-hotspot\bin;C:\Python38\Scripts;C:\Python38;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Program Files\PuTTY;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\arthu\AppData\Local\Microsoft\WindowsApps;C:\Users\arthu\AppData\Roaming\npm;C:\Users\arthu\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\arthu\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.4
 
 Node version: 
-  12.16.1
+  12.18.0
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\Gi\AppDonate\node_modules\@babel\compat-data\node_modules\.bin'
+  Error: EBUSY: resource busy or locked, copyfile 'C:\Users\arthu\AppData\Local\Yarn\Cache\v6\npm-@react-navigation-drawer-5.9.2-5c678b8ee208837a0ccf254d353e4ffe1d5493bf-integrity\node_modules\@react-navigation\drawer\LICENSE' -> 'C:\Users\arthu\Desktop\AppDonate\node_modules\@react-navigation\drawer\LICENSE'
 
 npm manifest: 
   {
