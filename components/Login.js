@@ -27,13 +27,13 @@ class Login extends React.Component {
         })
             .then(async res => {
                 if(res.status === 200) {
-                    await auth(res.data)
+                    await this.props.auth({ user: res.data })
                     this.props.navigation.navigate('Feed')
                 }
             })
             .catch(error => {
-                console.log('erro')
                 // APRENSENTAR UM POP UP DE ERRO PARA O USUARIO
+                console.error('ERRO NO LOGIN >', error)
             })
     }
     //renderização do componente
@@ -102,7 +102,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({ auth }, dispatch)
 
-export default connect(mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);
 
 //#3693BA
 const estilo = StyleSheet.create({

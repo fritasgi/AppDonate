@@ -6,7 +6,7 @@ const initialState = {
   export const authReducer = (state = initialState, action) => {
     switch (action.type) {
       case 'LOGIN':
-        console.log('nao veio aqui mano')
+        console.log('DISPATCH LOGIN')
         return {
           ...state,
           user: action.user

@@ -39,7 +39,7 @@ class Perfil extends React.Component {
     
     //renderização do componente
     render() {
-        const prop = this.prop
+        const { auth: { user } } = this.props
         return (
             <View style={{backgroundColor: 'white'}}>
 
@@ -49,7 +49,7 @@ class Perfil extends React.Component {
                         onPress={() => this.props.navigation.openDrawer()}>
                         <Image style={estilo.menu} source={require('../assets/images/menu.png')} />
                     </TouchableHighlight>
-                    <Text style={estilo.titulo}></Text>
+                    <Text style={estilo.titulo}>{ user.name }</Text>
                 </View>
                 <FlatList
                     data={DATA}

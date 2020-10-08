@@ -3,7 +3,7 @@ import axios from '../lib/axios'
 import { Text, TextInput, ScrollView, StyleSheet, View, TouchableHighlight, Image } from 'react-native';
 
 async function cadastrarUsuarios(pNome, pEmail, pSenha){
-        const user = await axio.post('/user', {nome: pNome, email: pEmail , senha: pSenha})
+        const user = await axios.post('/user', {nome: pNome, email: pEmail , senha: pSenha})
 };
 
 export default class Cadastro extends React.Component {
