@@ -49,7 +49,7 @@ class Perfil extends React.Component {
                         onPress={() => this.props.navigation.openDrawer()}>
                         <Image style={estilo.menu} source={require('../assets/images/menu.png')} />
                     </TouchableHighlight>
-                    <Text style={estilo.titulo}>{ user.name }</Text>
+                    <Text style={estilo.titulo}>{ user.nome }</Text>
                 </View>
                 <FlatList
                     data={DATA}

@@ -27,7 +27,7 @@ class Login extends React.Component {
         })
             .then(async res => {
                 if(res.status === 200) {
-                    await this.props.auth({ user: res.data })
+                    await this.props.auth(res.data)
                     this.props.navigation.navigate('Feed')
                 }
             })
@@ -35,6 +35,8 @@ class Login extends React.Component {
                 // APRENSENTAR UM POP UP DE ERRO PARA O USUARIO
                 console.error('ERRO NO LOGIN >', error)
             })
+            this.props.navigation.navigate('Feed')
+
     }
     //renderização do componente
     render() {
