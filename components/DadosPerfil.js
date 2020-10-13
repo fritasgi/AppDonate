@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, TouchableHighlight,TextInput } from 'react-native';
 import PropTypes from 'prop-types';
-import LikeCounter from './LikeCounter'
 
 export default class DadosPerfil extends React.Component {
 
@@ -22,7 +21,6 @@ export default class DadosPerfil extends React.Component {
                 </View>
                 <Text style={estilo.depoimento}>{this.props.depoimento}</Text>
 
-                <LikeCounter reacoes={this.props.reacoes} />
                 <Text style={estilo.reacao}>COMENTÁRIOS:</Text>
 
                 <View style={estilo.coment}>

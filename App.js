@@ -11,6 +11,7 @@ import Login from './components/Login.js'
 import Cadastro from './components/Cadastro'
 import Feed from './components/Depoimentos'
 import Perfil from './components/Perfil'
+import Escrever from './components/Escrever'
 
 const Drawer = createDrawerNavigator();
 
@@ -29,6 +30,11 @@ export default function App() {
             name="Feed"
             component={Feed}
             options={{ drawerLabel: 'Depoimentos' }}
+          />
+          <Drawer.Screen
+            name="Escrever"
+            component={Escrever}
+            options={{ drawerLabel: 'Escrever' }}
           />
           <Drawer.Screen
             name="ComoDoar"

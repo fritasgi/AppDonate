@@ -14,8 +14,7 @@ function Item({ nome, depoimento, img, comentario1, usuario1, comentario2, usuar
         comentario1={comentario1}
         usuario1={usuario1}
         comentario2={comentario2}
-        usuario2={usuario2}
-        reacoes={reacoes} />
+        usuario2={usuario2} />
     </View>
   );
 }
@@ -43,7 +42,17 @@ export default class Feed extends React.Component {
           <Text style={estilo.titulo}>DEPOIMENTOS</Text>
         </View>
 
-        <Escrever/>
+        
+        <TouchableHighlight
+                    underlayColor='white'
+                     style={estilo.botaoEscrever}
+                     onPress={()=>{
+                       this.props.navigation.navigate('Escrever')
+                    }}>
+                   <Text style={{textAlign: 'center'}}>ESCREVA SEU DEPOIMENTO</Text>
+                </TouchableHighlight>
+
+
         <FlatList
           data={DATA}
           renderItem={
@@ -64,6 +73,23 @@ export default class Feed extends React.Component {
 }
 
 const estilo = StyleSheet.create({
+  botaoEscrever:{
+    backgroundColor: '#3693BA',
+    padding: 10,
+    paddingHorizontal: 20,
+    marginHorizontal:50,
+    borderRadius: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 1,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 3.49,
+    elevation: 3,
+    marginVertical: 10
+    
+},
   item:{
     marginHorizontal: 10,
     margin: 8,
