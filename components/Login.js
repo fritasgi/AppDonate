@@ -32,6 +32,7 @@ class Login extends React.Component {
                 }
             })
             .catch(error => {
+                
                 // APRENSENTAR UM POP UP DE ERRO PARA O USUARIO
                 console.error('ERRO NO LOGIN >', error)
             })

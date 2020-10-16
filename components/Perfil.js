@@ -25,32 +25,22 @@ import axios from '../lib/axios'
 //     );
 // }
 
-async function listarPerfil(codigo) {
-    const response = await axios.get(`/post/user/${codigo}`)
-    let postagem = []
 
-    response.data.map((post, index) => {
-        postagem.push(
-            <View key={index}>
-                <Text>
-                    {post.texto}
-                </Text>
-            </View>
-        )
-    })
-}
 
 class Perfil extends React.Component {
     //construtor para uso do props
     constructor(props) {
         super(props)
     }
-
+    
     //renderização do componente
     render() {
         const { auth: { user } } = this.props
-        console.log(listarPerfil(user.codigo))
-
+        const getPosts = () => {
+            return axios.get(`/post/user/${user.codigo}`)
+                .then(res => res.data)
+        }
+        
         var imagem = null;
         if (user.foto == null) {
             imagem = 'https://cdn.icon-icons.com/icons2/1141/PNG/512/1486395884-account_80606.png'
@@ -75,30 +65,15 @@ class Perfil extends React.Component {
                     <Image style={estilo.imagem} source={{ uri: imagem }} />
                     <Text style={estilo.nome}>{user.nome}</Text>
                 </View>
-
-                {/* <TouchableHighlight
-                    onPress={() => this.listarPerfil(user.codigo)}>
-                    
-                </TouchableHighlight> */}
-                {/* <FlatList
-                renderItem={({item}) => <listarPerfil codigo={user.codigo}/>}
-                keyExtractor={(item, index) => index.toString()}
-                /> */}
-
-
-                {/* <FlatList
-                    data={DATA}
-                    renderItem={
-                        ({ item }) => <Item nome={item.nome}
-                            email={item.email}
-                            depoimento={item.depoimento}
-                            imagem={item.imagem}
-                            comentario={item.comentario}
-                            usuario={item.usuario}
-                            reacoes={item.reacoes} />
-                    }
-                    keyExtractor={(item, index) => index.toString()}
-                /> */}
+                <View>
+                    <FlatList
+                        data={getPosts()}
+                        renderItem={({ item }) => (
+                            <Item>{item.texto}</Item>
+                        )}
+                        keyExtractor={item => item.codigo}
+                    />
+                </View>
             </View>
         )
     }
