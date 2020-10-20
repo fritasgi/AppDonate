@@ -1,29 +1,15 @@
 import React, { Component } from 'react';
 import { Button } from 'react-native';
-import { Text, TouchableHighlight, Image, StyleSheet, View, FlatList } from 'react-native';
+import { ScrollView } from 'react-native';
+import { Text, TouchableHighlight, Image, StyleSheet, View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import axiosInstance from '../lib/axios';
 import axios from '../lib/axios'
 
-// function Item({ nome, email, imagem, depoimento, comentario, usuario, reacoes }) {
-//     return (
-//         <View><Informacoes
-//             nome={nome}
-//             email={email}
-//             imagem={imagem} />
-//             <View style={estilo.item}>
 
-//                 <DadosPerfil nome={nome}
-//                     depoimento={depoimento}
-//                     imagem={imagem}
-//                     comentario={comentario}
-//                     usuario={usuario}
-//                     reacoes={reacoes} />
-//             </View>
-//         </View>
-
-//     );
-// }
+// async function cadastrarComentario(pUsuario, pTexto, pPostagem) {
+//     const user = await axios.post('/comment', { usuario: pUsuario, texto: pTexto, postagem: pPostagem })
+// };
 
 
 
@@ -35,13 +21,20 @@ class Perfil extends React.Component {
     }
 
     state = {
+        // usuario: {
+        //     codigo: this.props.auth.user.codigo
+        // },
+        // texto: '',
+        // postagem: {
+        //     codigo: ''
+        // },
         posts: []
     }
 
     getPosts = () => {
         axios.get(`/post/user/${this.props.auth.user.codigo}`)
             .then(res => {
-                this.setState({posts: res.data})
+                this.setState({ posts: res.data })
             })
             .catch(error => {
                 console.log(error)
@@ -60,15 +53,41 @@ class Perfil extends React.Component {
             let posts = []
             posts = this.state.posts.map(post => {
                 return (
-                    <View>
-                        <Text>{post.usuario.nome}</Text>
-                        <Text>{post.texto}</Text>
+                    <View style={estilo.item}>
+
+                        <View style={estilo.perfilDep}>
+                            <Image style={estilo.imagemDep} source={{ uri: 'https://cdn.icon-icons.com/icons2/1141/PNG/512/1486395884-account_80606.png' }} />
+                            <Text style={estilo.nomeDep}>{post.usuario.nome}</Text>
+                        </View>
+                        <Text style={estilo.depoimento}>{post.texto}</Text>
+                        {/* <View>
+                            <Text style={estilo.reacao}>COMENTÁRIOS:</Text>
+                            <View style={estilo.coment}>
+                                <Text style={estilo.user}>{this.props.usuario}</Text>
+                                <Text style={estilo.comentario}>{this.props.comentario}</Text>
+                            </View>
+                        </View>
+                        <View style={estilo.mensagem}>
+                            <TextInput
+                                style={estilo.input}
+                                placeholder="Deixe seu comentário"
+                                onChangeText={(value) => this.setState({ texto: value, postagem: post.codigo })} />
+                            <TouchableHighlight
+                                style={estilo.botaoComentario}
+                                onPress={() => {
+                                    cadastrarComentario(this.state.usuario, this.state.texto, this.state.postagem)
+                                }}>
+                                <Text style={{ textAlign: 'center', padding: 2 }}>COMENTAR</Text>
+                            </TouchableHighlight> 
+                            </View>*/}
+                        
                     </View>
+
                 )
             })
             return posts
         }
-        
+
         return (
             <View style={{ backgroundColor: 'white' }}>
 
@@ -80,16 +99,30 @@ class Perfil extends React.Component {
                     </TouchableHighlight>
                     <Text style={estilo.titulo}>MEU PERFIL</Text>
                 </View>
+                <ScrollView>
+                    <View style={estilo.item}>
+                        <View style={estilo.perfil}>
 
-                <View style={estilo.perfil}>
+                            <Image style={estilo.imagem} source={{ uri: imagem }} />
+                            <View>
+                                <Text style={estilo.nome}>{user.nome}</Text>
+                                <Text>{user.email}</Text>
+                            </View>
 
-                    <Image style={estilo.imagem} source={{ uri: imagem }} />
-                    <Text style={estilo.nome}>{user.nome}</Text>
-                </View>
-                <View>
+                        </View>
+                        <View style={estilo.editar}>
+                            <TouchableHighlight
+                                style={estilo.botaoEditar}>
+                                <Text style={{ textAlign: 'center', padding: 2, fontWeight: 'bold' }}>EDITAR PERFIL</Text>
+                            </TouchableHighlight>
+                        </View>
+
+                    </View>
                     {listPost()}
-                </View>
+                </ScrollView>
+
             </View>
+
         )
     }
 }
@@ -101,10 +134,24 @@ const mapStateToProps = store => ({
 export default connect(mapStateToProps)(Perfil);
 
 const estilo = StyleSheet.create({
+    editar: {
+        justifyContent: 'flex-end'
+    },
+    nomeDep: {
+        fontWeight: 'bold',
+        fontSize: 17,
+        margin: 10
+    },
     comentario: {
         fontSize: 16,
         textAlign: 'justify',
         margin: 5
+    },
+    imagemDep: {
+        width: 30,
+        height: 30,
+        resizeMode: 'stretch',
+        borderRadius: 20
     },
     user: {
         margin: 5,
@@ -114,7 +161,7 @@ const estilo = StyleSheet.create({
     nome: {
         fontWeight: 'bold',
         fontSize: 17,
-        marginTop: 25
+        marginTop: 20
     },
     imagem: {
         margin: 10,
@@ -124,6 +171,10 @@ const estilo = StyleSheet.create({
         borderRadius: 20
     },
     perfil: {
+        flexDirection: 'row',
+        marginLeft: 10
+    },
+    perfilDep: {
         flexDirection: 'row',
         marginBottom: 10
     },
@@ -143,11 +194,12 @@ const estilo = StyleSheet.create({
         fontWeight: 'bold',
         color: '#3693BA'
     },
-    botao: {
+    botaoEditar: {
         backgroundColor: '#3693BA',
         borderRadius: 10,
-        padding: 5,
-        marginLeft: 5,
+        padding: 10,
+        margin: 10,
+        marginHorizontal: 20,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -162,6 +214,21 @@ const estilo = StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: 'row',
         marginTop: 10,
+    },
+    botaoComentario: {
+        backgroundColor: '#3693BA',
+        borderRadius: 10,
+        padding: 5,
+        marginLeft: 5,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.37,
+        shadowRadius: 3.49,
+        elevation: 3,
+
     },
     input: {
         width: 240,
