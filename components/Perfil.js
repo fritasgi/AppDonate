@@ -31,23 +31,44 @@ class Perfil extends React.Component {
     //construtor para uso do props
     constructor(props) {
         super(props)
+        this.getPosts()
     }
-    
+
+    state = {
+        posts: []
+    }
+
+    getPosts = () => {
+        axios.get(`/post/user/${this.props.auth.user.codigo}`)
+            .then(res => {
+                this.setState({posts: res.data})
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
     //renderização do componente
     render() {
         const { auth: { user } } = this.props
-        const getPosts = () => {
-            return axios.get(`/post/user/${user.codigo}`)
-                .then(res => res.data)
-        }
-        
         var imagem = null;
         if (user.foto == null) {
             imagem = 'https://cdn.icon-icons.com/icons2/1141/PNG/512/1486395884-account_80606.png'
         } else {
             imagem = user.foto
         }
-
+        const listPost = () => {
+            let posts = []
+            posts = this.state.posts.map(post => {
+                return (
+                    <View>
+                        <Text>{post.usuario.nome}</Text>
+                        <Text>{post.texto}</Text>
+                    </View>
+                )
+            })
+            return posts
+        }
+        
         return (
             <View style={{ backgroundColor: 'white' }}>
 
@@ -66,13 +87,7 @@ class Perfil extends React.Component {
                     <Text style={estilo.nome}>{user.nome}</Text>
                 </View>
                 <View>
-                    <FlatList
-                        data={getPosts()}
-                        renderItem={({ item }) => (
-                            <Item>{item.texto}</Item>
-                        )}
-                        keyExtractor={item => item.codigo}
-                    />
+                    {listPost()}
                 </View>
             </View>
         )
