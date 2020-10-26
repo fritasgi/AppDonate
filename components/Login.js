@@ -44,7 +44,6 @@ class Login extends React.Component {
         return (
             <ScrollView style={{backgroundColor: 'white'}}>
 
-                {/* tentei utilizar um componente externo para o header mas nao funcionou */}
                 <View style={estilo.viewTitulo}>
                     <TouchableHighlight
                     underlayColor='white'

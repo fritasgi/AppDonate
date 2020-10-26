@@ -27,11 +27,13 @@ import axios from '../lib/axios'
   }
   //renderização do componente
   render() {
+    const { auth: { user } } = this.props
+    
     const listPost = () => {
       let posts = []
       posts = this.state.posts.map(post => {
         return (
-          <View style={estilo.item}>
+          <View style={estilo.item} key={post.codigo}>
 
             <View style={estilo.perfilDep}>
               <Image style={estilo.imagemDep} source={{ uri: 'https://cdn.icon-icons.com/icons2/1141/PNG/512/1486395884-account_80606.png' }} />

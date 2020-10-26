@@ -5,29 +5,29 @@ import { Text, TouchableHighlight, Image, StyleSheet, View, TextInput } from 're
 import { connect } from 'react-redux';
 import axiosInstance from '../lib/axios';
 import axios from '../lib/axios'
+import Editar from './EditarPerfil'
 
 
-// async function cadastrarComentario(pUsuario, pTexto, pPostagem) {
-//     const user = await axios.post('/comment', { usuario: pUsuario, texto: pTexto, postagem: pPostagem })
-// };
+async function cadastrarComentario(pUsuario, pTexto, pPostagem) {
+    const user = await axios.post('/comment', { usuario: pUsuario, texto: pTexto, postagem: { codigo: pPostagem } })
+};
 
 
 
 class Perfil extends React.Component {
-    //construtor para uso do props
+
     constructor(props) {
         super(props)
         this.getPosts()
     }
 
     state = {
-        // usuario: {
-        //     codigo: this.props.auth.user.codigo
-        // },
-        // texto: '',
-        // postagem: {
-        //     codigo: ''
-        // },
+        usuario: {
+            codigo: this.props.auth.user.codigo
+        },
+        texto: '',
+        postagem: '',
+        comments: [],
         posts: []
     }
 
@@ -35,10 +35,30 @@ class Perfil extends React.Component {
         axios.get(`/post/user/${this.props.auth.user.codigo}`)
             .then(res => {
                 this.setState({ posts: res.data })
+                this.getComments(res.data)
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+
+    getComments = async (posts) => {
+        posts.forEach(async post => {
+            await axios.get(`/comment/post/${post.codigo}`)
+                .then(res => {
+                    res.data.forEach(comment => {
+                        this.state.comments.push({
+                            texto: comment.texto,
+                            usuario: comment.usuario.nome,
+                            postagem: post.codigo,
+                            codigo: comment.codigo
+                        })
+                    })
+                })
+                .catch(error => {
+                    //console.log(error)
+                })
+        })
     }
     //renderização do componente
     render() {
@@ -49,23 +69,41 @@ class Perfil extends React.Component {
         } else {
             imagem = user.foto
         }
+
+        const listComment = (codigo) => {
+            let comments = []
+            console.log("MERDA", this.state.comments)
+            comments = this.state.comments.map(comment => {
+                //  console.log("ENTROU ")
+                if (comment.postagem == codigo) {
+                    console.log("TESTE")
+                    return (
+                        <View style={estilo.coment} key={comment.codigo}>
+                            <Text style={estilo.user}>{comment.usuario}</Text>
+                            <Text style={estilo.comentario}>{comment.texto}</Text>
+                        </View>
+
+                    )
+                }
+            })
+            return comments
+        }
+
         const listPost = () => {
             let posts = []
             posts = this.state.posts.map(post => {
                 return (
-                    <View style={estilo.item}>
+                    <View style={estilo.item} key={post.codigo}>
 
                         <View style={estilo.perfilDep}>
                             <Image style={estilo.imagemDep} source={{ uri: 'https://cdn.icon-icons.com/icons2/1141/PNG/512/1486395884-account_80606.png' }} />
                             <Text style={estilo.nomeDep}>{post.usuario.nome}</Text>
                         </View>
                         <Text style={estilo.depoimento}>{post.texto}</Text>
-                        {/* <View>
+
+                        <View>
                             <Text style={estilo.reacao}>COMENTÁRIOS:</Text>
-                            <View style={estilo.coment}>
-                                <Text style={estilo.user}>{this.props.usuario}</Text>
-                                <Text style={estilo.comentario}>{this.props.comentario}</Text>
-                            </View>
+                            {listComment(post.codigo)}
                         </View>
                         <View style={estilo.mensagem}>
                             <TextInput
@@ -78,9 +116,9 @@ class Perfil extends React.Component {
                                     cadastrarComentario(this.state.usuario, this.state.texto, this.state.postagem)
                                 }}>
                                 <Text style={{ textAlign: 'center', padding: 2 }}>COMENTAR</Text>
-                            </TouchableHighlight> 
-                            </View>*/}
-                        
+                            </TouchableHighlight>
+                        </View>
+
                     </View>
 
                 )
@@ -112,7 +150,8 @@ class Perfil extends React.Component {
                         </View>
                         <View style={estilo.editar}>
                             <TouchableHighlight
-                                style={estilo.botaoEditar}>
+                                style={estilo.botaoEditar}
+                                onPress={() => this.props.navigation.navigate('Editar')}>
                                 <Text style={{ textAlign: 'center', padding: 2, fontWeight: 'bold' }}>EDITAR PERFIL</Text>
                             </TouchableHighlight>
                         </View>
