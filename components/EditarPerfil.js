@@ -3,7 +3,7 @@ import axios from '../lib/axios'
 import { Text, TextInput, ScrollView, StyleSheet, View, TouchableHighlight, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { auth } from '../redux/actions';
+import { auth } from '../redux/actions/';
 
 
 async function editarPerfil(pCodigo, pNome, pEmail, pSenha) {
@@ -11,6 +11,10 @@ async function editarPerfil(pCodigo, pNome, pEmail, pSenha) {
 };
 
 class Editar extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
 
     state = {
         codigo: this.props.auth.user.codigo,
@@ -79,13 +83,13 @@ class Editar extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ auth }, dispatch)
+//const mapDispatchToProps = dispatch => bindActionCreators({ auth }, dispatch)
 
 const mapStateToProps = store => ({
     auth: store.auth
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editar);
+export default connect(mapStateToProps)(Editar);
 
 //#3693BA
 const estilo = StyleSheet.create({
