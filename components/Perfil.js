@@ -72,11 +72,8 @@ class Perfil extends React.Component {
 
         const listComment = (codigo) => {
             let comments = []
-            console.log("MERDA", this.state.comments)
             comments = this.state.comments.map(comment => {
-                //  console.log("ENTROU ")
                 if (comment.postagem == codigo) {
-                    console.log("TESTE")
                     return (
                         <View style={estilo.coment} key={comment.codigo}>
                             <Text style={estilo.user}>{comment.usuario}</Text>
@@ -151,7 +148,7 @@ class Perfil extends React.Component {
                         <View style={estilo.editar}>
                             <TouchableHighlight
                                 style={estilo.botaoEditar}
-                                onPress={() => this.props.navigation.navigate('Editar')}>
+                                onPress={() => this.props.navigation.navigate('Editar', {user})}>
                                 <Text style={{ textAlign: 'center', padding: 2, fontWeight: 'bold' }}>EDITAR PERFIL</Text>
                             </TouchableHighlight>
                         </View>

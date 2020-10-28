@@ -6,27 +6,34 @@ import { bindActionCreators } from 'redux';
 import { auth } from '../redux/actions/';
 
 
-async function editarPerfil(pCodigo, pNome, pEmail, pSenha) {
-    const user = await axios.put(`/user/${pCodigo}`, { nome: pNome, email: pEmail, senha: pSenha })
-};
-
 class Editar extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
+        const { codigo, nome, email, senha } = props.route.params.user
+        this.state.codigo = codigo
+        this.state.nome = nome
+        this.state.email = email
+        this.state.senha = senha
     }
-
     state = {
-        codigo: this.props.auth.user.codigo,
-        nome: this.props.auth.user.nome ,
-        email: this.props.auth.user.email,
-        senha: this.props.auth.user.senha,
+        codigo: '',
+        nome: '',
+        email: '',
+        senha: '',
     }
-
+    editarPerfil = ({codigo, nome, email, senha}) => {
+        axios.put(`/user/${codigo}`, { nome, email, senha })
+            .then(res => {
+                this.props.auth(res.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     //renderização do componente
     render() {
-        const { auth: { user } } = this.props
         return (
             <ScrollView style={{ backgroundColor: 'white' }}>
 
@@ -68,7 +75,7 @@ class Editar extends React.Component {
                     <TouchableHighlight
                         underlayColor='#E6E6E6'
                         onPress={() => {
-                            editarPerfil(this.state.codigo, this.state.nome, this.state.email, this.state.senha),
+                            this.editarPerfil(this.state),
                                 this.props.navigation.navigate('Perfil')
                         }}
                         style={estilo.botao}>
@@ -83,13 +90,14 @@ class Editar extends React.Component {
     }
 }
 
-//const mapDispatchToProps = dispatch => bindActionCreators({ auth }, dispatch)
+// const mapStateToProps = store => ({
+//     auth: store.auth
+// })
 
-const mapStateToProps = store => ({
-    auth: store.auth
-})
+const mapDispatchToProps = dispatch => bindActionCreators({ auth }, dispatch)
 
-export default connect(mapStateToProps)(Editar);
+
+export default connect(null, mapDispatchToProps)(Editar);
 
 //#3693BA
 const estilo = StyleSheet.create({
