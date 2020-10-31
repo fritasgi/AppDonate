@@ -32,11 +32,9 @@ class Login extends React.Component {
                 }
             })
             .catch(error => {
-                
-                // APRENSENTAR UM POP UP DE ERRO PARA O USUARIO
-                console.error('ERRO NO LOGIN >', error)
+                Alert.alert('E-mail ou senha inválidos. Tente novamente.')
             })
-            this.props.navigation.navigate('Feed')
+            
 
     }
     //renderização do componente
