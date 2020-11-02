@@ -27,7 +27,7 @@ class Perfil extends React.Component {
         },
         texto: '',
         postagem: '',
-        comments: [],
+        // comments: [],
         posts: []
     }
 
@@ -42,24 +42,24 @@ class Perfil extends React.Component {
             })
     }
 
-    getComments = async (posts) => {
-        posts.forEach(async post => {
-            await axios.get(`/comment/post/${post.codigo}`)
-                .then(res => {
-                    res.data.forEach(comment => {
-                        this.state.comments.push({
-                            texto: comment.texto,
-                            usuario: comment.usuario.nome,
-                            postagem: post.codigo,
-                            codigo: comment.codigo
-                        })
-                    })
-                })
-                .catch(error => {
-                    //console.log(error)
-                })
-        })
-    }
+    // getComments = async (posts) => {
+    //     posts.forEach(async post => {
+    //         await axios.get(`/comment/post/${post.codigo}`)
+    //             .then(res => {
+    //                 res.data.forEach(comment => {
+    //                     this.state.comments.push({
+    //                         texto: comment.texto,
+    //                         usuario: comment.usuario.nome,
+    //                         postagem: post.codigo,
+    //                         codigo: comment.codigo
+    //                     })
+    //                 })
+    //             })
+    //             .catch(error => {
+    //                 //console.log(error)
+    //             })
+    //     })
+    // }
     //renderização do componente
     render() {
         const { auth: { user } } = this.props
@@ -70,21 +70,21 @@ class Perfil extends React.Component {
             imagem = user.foto
         }
 
-        const listComment = (codigo) => {
-            let comments = []
-            comments = this.state.comments.map(comment => {
-                if (comment.postagem == codigo) {
-                    return (
-                        <View style={estilo.coment} key={comment.codigo}>
-                            <Text style={estilo.user}>{comment.usuario}</Text>
-                            <Text style={estilo.comentario}>{comment.texto}</Text>
-                        </View>
+        // const listComment = (codigo) => {
+        //     let comments = []
+        //     comments = this.state.comments.map(comment => {
+        //         if (comment.postagem == codigo) {
+        //             return (
+        //                 <View style={estilo.coment} key={comment.codigo}>
+        //                     <Text style={estilo.user}>{comment.usuario}</Text>
+        //                     <Text style={estilo.comentario}>{comment.texto}</Text>
+        //                 </View>
 
-                    )
-                }
-            })
-            return comments
-        }
+        //             )
+        //         }
+        //     })
+        //     return comments
+        // }
 
         const listPost = () => {
             let posts = []
@@ -100,7 +100,7 @@ class Perfil extends React.Component {
 
                         <View>
                             <Text style={estilo.reacao}>COMENTÁRIOS:</Text>
-                            {listComment(post.codigo)}
+                            {/* {listComment(post.codigo)} */}
                         </View>
                         <View style={estilo.mensagem}>
                             <TextInput

@@ -43,11 +43,6 @@ class Login extends React.Component {
             <ScrollView style={{backgroundColor: 'white'}}>
 
                 <View style={estilo.viewTitulo}>
-                    <TouchableHighlight
-                    underlayColor='white'
-                    onPress={() => this.props.navigation.openDrawer()}>
-                    <Image style={estilo.menu} source={require('../assets/images/menu.png')}/>
-                    </TouchableHighlight>
                     <Text style={estilo.titulo}>LOGIN</Text>
                 </View>
 

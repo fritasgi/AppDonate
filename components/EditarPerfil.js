@@ -67,8 +67,6 @@ class Editar extends React.Component {
                         value={this.state.senha}
                         onChangeText={(value) => this.setState({ senha: value })}
                     />
-                    <Text style={estilo.dados}>CONFIRME SUA SENHA:</Text>
-                    <TextInput style={estilo.input} secureTextEntry={true} placeholder="Digite sua senha novamente" />
                 </View>
 
                 <View >

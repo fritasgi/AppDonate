@@ -21,11 +21,6 @@ export default class Cadastro extends React.Component {
             <ScrollView style={{backgroundColor: 'white'}}>
 
                 <View style={estilo.viewTitulo}>
-                    <TouchableHighlight
-                        underlayColor='white'
-                        onPress={() => this.props.navigation.openDrawer()}>
-                        <Image style={estilo.menu} source={require('../assets/images/menu.png')} />
-                    </TouchableHighlight>
                     <Text style={estilo.titulo}>CADASTRO</Text>
                 </View>
 
@@ -52,8 +47,6 @@ export default class Cadastro extends React.Component {
                             
                                 onChangeText={(value) => this.setState({ senha: value })}
                      />
-                    <Text style={estilo.dados}>CONFIRME SUA SENHA:</Text>
-                    <TextInput style={estilo.input} secureTextEntry={true} placeholder="Digite sua senha novamente" />
                 </View>
 
                 <View >
