@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Text, TouchableHighlight, Image, StyleSheet, View, FlatList, ScrollView } from 'react-native';
+import { Text, TouchableHighlight, Image, StyleSheet, View, FlatList, ScrollView, TextInput } from 'react-native';
 import Escrever from './Escrever'
 import { connect } from 'react-redux';
 import axios from '../lib/axios'
 
+async function cadastrarComentario(pUsuario, pTexto, pPostagem) {
+  const user = await axios.post('/comment', { usuario: pUsuario, texto: pTexto, postagem: { codigo: pPostagem } })
+};
 
- class Feed extends React.Component {
+class Feed extends React.Component {
 
   constructor(props) {
     super(props)
@@ -28,7 +31,7 @@ import axios from '../lib/axios'
   //renderização do componente
   render() {
     const { auth: { user } } = this.props
-    
+
     const listPost = () => {
       let posts = []
       posts = this.state.posts.map(post => {
@@ -40,6 +43,25 @@ import axios from '../lib/axios'
               <Text style={estilo.nomeDep}>{post.usuario.nome}</Text>
             </View>
             <Text style={estilo.depoimento}>{post.texto}</Text>
+
+            <View>
+              <Text style={estilo.reacao}>COMENTÁRIOS:</Text>
+              {/* {listComment(post.codigo)} */}
+            </View>
+            <View style={estilo.mensagem}>
+              <TextInput
+                style={estilo.input}
+                placeholder="Deixe seu comentário"
+                onChangeText={(value) => this.setState({ texto: value, postagem: post.codigo })} />
+              <TouchableHighlight
+                style={estilo.botaoComentario}
+                onPress={() => {
+                  cadastrarComentario(this.state.usuario, this.state.texto, this.state.postagem)
+                }}>
+                <Text style={{ textAlign: 'center', padding: 2 }}>COMENTAR</Text>
+              </TouchableHighlight>
+            </View>
+
 
 
 
@@ -95,6 +117,39 @@ const estilo = StyleSheet.create({
     resizeMode: 'stretch',
     borderRadius: 20
   },
+  reacao: {
+    marginTop: 5,
+    fontWeight: 'bold',
+    color: '#3693BA'
+  },
+  botaoComentario: {
+    backgroundColor: '#3693BA',
+    borderRadius: 10,
+    padding: 5,
+    marginLeft: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 3.49,
+    elevation: 3,
+
+  },
+  mensagem: {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    marginTop: 10,
+},
+  input: {
+    width: 240,
+    height: 30,
+    backgroundColor: 'white',
+    borderColor: 'grey',
+    borderWidth: 1,
+    borderRadius: 5
+},
   nomeDep: {
     fontWeight: 'bold',
     fontSize: 17,
